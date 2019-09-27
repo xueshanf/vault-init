@@ -9,6 +9,7 @@ WORKDIR /go/src/app
 
 # Fetch dependencies
 COPY go.mod ./
+COPY go.sum ./
 RUN go mod download
 
 COPY . .
@@ -19,7 +20,6 @@ RUN go build \
   -ldflags "-s -w -extldflags 'static'" \
   -installsuffix cgo \
   -tags netgo \
-  -mod vendor \
   -o /bin/vault-init \
   .
 
