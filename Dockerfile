@@ -6,6 +6,11 @@ ENV GO111MODULE=on \
   GOARCH=amd64
 
 WORKDIR /go/src/app
+
+# Fetch dependencies
+COPY go.mod ./
+RUN go mod download
+
 COPY . .
 
 RUN go build \
