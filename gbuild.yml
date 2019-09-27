@@ -1,0 +1,12 @@
+# Push/Cache $SOURCE_TAG to $DESTINATION_TAG
+steps:
+- id: clone
+  name: 'gcr.io/cloud-builders/git'
+  args: ['clone', '$_APP_IMAGE_SRC']
+- id: build
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', '$_DESTINATION_TAG', '.']
+  env: ["GOPATH=."]
+  dir: vault-init
+
+images: ['$_DESTINATION_TAG']
