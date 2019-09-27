@@ -13,6 +13,7 @@ RUN go mod download
 
 COPY . .
 
+RUN ls -l
 RUN go build \
   -a \
   -ldflags "-s -w -extldflags 'static'" \
